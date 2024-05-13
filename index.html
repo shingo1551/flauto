@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Flauto Traverso</title>
+
+  <link href="./styles.css" rel="stylesheet" />
+  <style>
+    #chart {
+      max-width: 800px;
+      margin: 35px auto;
+      padding-right: 35px;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+
+<body>
+  <div id="chart"></div>
+
+  <script>
+    const data = [
+      ['Pierre Naust', 1660, 1709],
+      ['Johann Hyacinthus Rottenburgh', 1672, 1756],
+      ['Jacques-Martin Hotteterre', 1674, 1763],
+      ['Thomas Lot 1', 1676, 1750],
+      ['Jakob Denner', 1681, 1735],
+      ['Johann Sebastian Bach', 1685, 1750],
+      ['Antoine Delelable', 1686, 1734],
+      ['Thomas Stanesby Jr.', 1692, 1754],
+      ['Johann Joachim Quantz', 1697, 1773],
+      ['Michel Blavet', 1700, 1768],
+      ['Godfridus Adrianus Rottenburgh', 1703, 1768],
+      ['Georg Heinrich Scherer', 1703, 1778],
+      ['Thomas Lot 2', 1708, 1787],
+      ['Carl Philipp Emanuel Bach', 1714, 1788]
+    ].map(d => ({
+      x: d[0],
+      y: [new Date(d[1]).getTime(), new Date(d[2]).getTime()]
+    }));
+
+    const options = {
+      series: [{ data }],
+      chart: {
+        height: 480,
+        type: 'rangeBar'
+      },
+      plotOptions: {
+        bar: {
+          horizontal: true
+        }
+      },
+      xaxis: {
+        type: 'categories',
+        min: 1650,
+        max: 1800
+      },
+    };
+
+    const chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
+
+  </script>
+
+</body>
+
+</html>
