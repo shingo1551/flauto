@@ -58,6 +58,14 @@
         min: 1650,
         max: 1800
       },
+      dataLabels: {
+        enabled: true,
+        formatter: (val, opts) => '' + val[0] + '-' + val[1] + ' : ' + (val[1] - val[0]),
+        // formatter: (val, opts) => '' + val[0] + '-' + val[1] + ' [' + (val[1] - val[0]) + ']',
+        style: {
+          colors: ['#f3f4f5', '#fff']
+        }
+      },
     };
 
     const chart = new ApexCharts(document.querySelector("#chart"), options);
