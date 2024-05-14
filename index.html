@@ -46,6 +46,10 @@
       ['Thomas Lot 3', 1708, 1787],
       ['Carl Philipp Emanuel Bach', 1714, 1788],
       ['Charls Bizey ?', 1716, 1752],
+      ['Franz Joseph Haydn', 1732, 1809],
+      ['Wolfgang Amadeus Mozart', 1756, 1791],
+      ['Carl Augustin Grenser', 1757, 1814],
+      ['Johhan Heinrich Wilhelm Grenser', 1764, 1813],
     ].map(d => ({
       x: d[0],
       y: [new Date(d[1]).getTime(), new Date(d[2]).getTime()]
@@ -65,7 +69,8 @@
       xaxis: {
         type: 'categories',
         min: 1600,
-        max: 1800
+        max: 1820,
+        stepSize: 50,
       },
       dataLabels: {
         enabled: true,
