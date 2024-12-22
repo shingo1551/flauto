@@ -90,6 +90,11 @@
         // max: 1820,
         // stepSize: 50,
       },
+      yaxis: {
+        labels: {
+          maxWidth: 200
+        }
+      },
       dataLabels: {
         enabled: true,
         formatter: (val, opts) => '' + val[0] + '-' + val[1] + ' : ' + (val[1] - val[0]),
