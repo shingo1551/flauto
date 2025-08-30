@@ -1,123 +1,121 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Flauto Traverso</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Flauto Traverso</title>
+    <link href="./styles.css" rel="stylesheet" />
+    <style>
+      #chart {
+        max-width: 900px;
+        margin: 35px auto;
+        padding-right: 35px;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  </head>
 
-  <link href="./styles.css" rel="stylesheet" />
-  <style>
-    #chart {
-      max-width: 900px;
-      margin: 35px auto;
-      padding-right: 35px;
-    }
-  </style>
-  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-</head>
+  <body>
+    <div id="chart"></div>
 
-<body>
-  <div id="chart"></div>
+    <script>
+      const makers = [
+        ["Jean Hotteterre", 1605, 1690],
+        ["Martin Hotteterre", 1640, 1712],
+        ["Thomas Lot 1", 1650, 1700],
+        ["Pierre Naust", 1660, 1709],
+        ["Peter Bressan", 1663, 1731],
+        ["Johann Hyacinthus Rottenburgh", 1672, 1756],
+        ["Thomas Lot 2", 1676, 1750],
+        ["Johann Heinrich Eichentopf", 1678, 1769],
+        ["Johann Poerschman", 1680, 1757],
+        ["Jakob Denner", 1681, 1735],
+        ["Johann Wilhelm Oberlender", 1681, 1745],
+        ["Antoine Delelable", 1686, 1734],
+        ["Calro Palanca", 1688, 1783],
+        ["Johann Cornelius Sattler", 1691, 1739],
+        ["Thomas Stanesby Jr.", 1692, 1754],
+        ["Godfridus Adrianus Rottenburgh", 1703, 1768],
+        ["Georg Heinrich Scherer", 1703, 1778],
+        ["Thomas Lot 3", 1708, 1787],
+        ["Charls Bizey ?", 1716, 1752],
+        ["Martin Lot", 1718, 1785],
+        ["Carl Wilhelm Sattler", 1738, 1788],
+        ["Carl Augustin Grenser", 1757, 1814],
+        ["Johhan Heinrich Wilhelm Grenser", 1764, 1813],
+      ];
 
-  <script>
-    const makers = [
-      ['Jean Hotteterre', 1605, 1690],
-      ['Martin Hotteterre', 1640, 1712],
-      ['Thomas Lot 1', 1650, 1700],
-      ['Pierre Naust', 1660, 1709],
-      ['Peter Bressan', 1663, 1731],
-      ['Johann Hyacinthus Rottenburgh', 1672, 1756],
-      ['Thomas Lot 2', 1676, 1750],
-      ['Johann Heinrich Eichentopf', 1678, 1769],
-      ['Johann Poerschman', 1680, 1757],
-      ['Jakob Denner', 1681, 1735],
-      ['Johann Wilhelm Oberlender', 1681, 1745],
-      ['Antoine Delelable', 1686, 1734],
-      ['Calro Palanca', 1688, 1783],
-      ['Johann Cornelius Sattler', 1691, 1739],
-      ['Thomas Stanesby Jr.', 1692, 1754],
-      ['Godfridus Adrianus Rottenburgh', 1703, 1768],
-      ['Georg Heinrich Scherer', 1703, 1778],
-      ['Thomas Lot 3', 1708, 1787],
-      ['Charls Bizey ?', 1716, 1752],
-      ['Carl Wilhelm Sattler', 1738, 1788],
-      ['Carl Augustin Grenser', 1757, 1814],
-      ['Johhan Heinrich Wilhelm Grenser', 1764, 1813],
-    ];
+      const composers = [
+        ["Jacques-Martin Hotteterre", 1674, 1763],
+        ["Michel de la Barre", 1675, 1743],
+        ["Pierre Danican Philidor", 1681, 1731],
+        ["Johann Sebastian Bach", 1685, 1750],
+        ["Louis-Antoine Dornel", 1685, 1765],
+        ["Pierre Gabriel Buffardin", 1690, 1768],
+        ["Jean-Marie Leclair", 1697, 1764],
+        ["Johann Joachim Quantz", 1697, 1773],
+        ["Michel Blavet", 1700, 1768],
+        ["Carl Philipp Emanuel Bach", 1714, 1788],
+        ["Franz Joseph Haydn", 1732, 1809],
+        ["Wolfgang Amadeus Mozart", 1756, 1791],
+      ];
 
-    const composers = [
-      ['Jacques-Martin Hotteterre', 1674, 1763],
-      ['Michel de la Barre', 1675, 1743],
-      ['Pierre Danican Philidor', 1681, 1731],
-      ['Johann Sebastian Bach', 1685, 1750],
-      ['Louis-Antoine Dornel', 1685, 1765],
-      ['Pierre Gabriel Buffardin', 1690, 1768],
-      ['Jean-Marie Leclair', 1697, 1764],
-      ['Johann Joachim Quantz', 1697, 1773],
-      ['Michel Blavet', 1700, 1768],
-      ['Carl Philipp Emanuel Bach', 1714, 1788],
-      ['Franz Joseph Haydn', 1732, 1809],
-      ['Wolfgang Amadeus Mozart', 1756, 1791],
-    ];
+      const data1 = makers.map((d) => ({
+        x: d[0],
+        y: [new Date(d[1]).getTime(), new Date(d[2]).getTime()],
+        fillColor: "#008FFB",
+      }));
 
-    const data1 = makers.map(d => ({
-      x: d[0],
-      y: [new Date(d[1]).getTime(), new Date(d[2]).getTime()],
-      fillColor: '#008FFB'
-    }));
+      const data2 = composers.map((d) => ({
+        x: d[0],
+        y: [new Date(d[1]).getTime(), new Date(d[2]).getTime()],
+        fillColor: "#00E396",
+      }));
 
-    const data2 = composers.map(d => ({
-      x: d[0],
-      y: [new Date(d[1]).getTime(), new Date(d[2]).getTime()],
-      fillColor: '#00E396'
-    }));
+      const data = [...data1, ...data2].sort((d1, d2) => {
+        return d1.y[0] - d2.y[0];
+      });
 
-    const data = [...data1, ...data2].sort((d1, d2) => {
-      return d1.y[0] - d2.y[0];
-    });
+      const options = {
+        series: [{ data }],
+        chart: {
+          height: 800,
+          type: "rangeBar",
+          zoom: {
+            enabled: false,
+          },
+        },
+        plotOptions: {
+          bar: {
+            horizontal: true,
+          },
+        },
+        xaxis: {
+          type: "categories",
+          // min: 1600,
+          // max: 1820,
+          // stepSize: 50,
+        },
+        yaxis: {
+          labels: {
+            maxWidth: 200,
+          },
+        },
+        dataLabels: {
+          enabled: true,
+          formatter: (val, opts) =>
+            "" + val[0] + "-" + val[1] + " : " + (val[1] - val[0]),
+          // formatter: (val, opts) => '' + val[0] + '-' + val[1] + ' [' + (val[1] - val[0]) + ']',
+          style: {
+            colors: ["#f3f4f5", "#fff"],
+          },
+        },
+      };
 
-    const options = {
-      series: [{ data }],
-      chart: {
-        height: 800,
-        type: 'rangeBar',
-        zoom: {
-          enabled: false
-        }
-      },
-      plotOptions: {
-        bar: {
-          horizontal: true
-        }
-      },
-      xaxis: {
-        type: 'categories',
-        // min: 1600,
-        // max: 1820,
-        // stepSize: 50,
-      },
-      yaxis: {
-        labels: {
-          maxWidth: 200
-        }
-      },
-      dataLabels: {
-        enabled: true,
-        formatter: (val, opts) => '' + val[0] + '-' + val[1] + ' : ' + (val[1] - val[0]),
-        // formatter: (val, opts) => '' + val[0] + '-' + val[1] + ' [' + (val[1] - val[0]) + ']',
-        style: {
-          colors: ['#f3f4f5', '#fff']
-        }
-      },
-    };
-
-    const chart = new ApexCharts(document.querySelector("#chart"), options);
-    chart.render();
-
-  </script>
-
-</body>
-
+      const chart = new ApexCharts(document.querySelector("#chart"), options);
+      chart.render();
+    </script>
+  </body>
 </html>
